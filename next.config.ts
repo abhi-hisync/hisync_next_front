@@ -17,7 +17,6 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
   experimental: {
-    optimizeCss: true,
     scrollRestoration: true,
   },
   compiler: {
