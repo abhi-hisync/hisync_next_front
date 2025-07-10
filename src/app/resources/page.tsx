@@ -2,18 +2,18 @@ import { Metadata } from 'next';
 import ResourcesPageComponent from '../../components/resources/ResourcesPage';
 
 export const metadata: Metadata = {
-  title: 'Resources & Insights | HiSync - Expert Knowledge Hub',
+  title: 'Resources & Insights | HISYNC - Expert Knowledge Hub',
   description: 'Explore our comprehensive collection of guides, best practices, case studies, and industry insights. Stay ahead with expert knowledge on data synchronization and enterprise solutions.',
   keywords: 'resources, guides, best practices, case studies, data synchronization, enterprise solutions, tutorials, insights, technical documentation',
   openGraph: {
-    title: 'Resources & Insights | HiSync',
+    title: 'Resources & Insights | HISYNC',
     description: 'Expert knowledge hub with guides, best practices, and industry insights for data synchronization.',
     type: 'website',
-    siteName: 'HiSync',
+    siteName: 'HISYNC',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Resources & Insights | HiSync',
+    title: 'Resources & Insights | HISYNC',
     description: 'Expert knowledge hub with guides, best practices, and industry insights.',
   },
   alternates: {
