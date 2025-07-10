@@ -84,7 +84,7 @@ export default function ContactPage() {
     {
       icon: <Phone className="w-6 h-6" />,
       title: "Phone",
-      details: ["+91 (120) 555-0123"],
+      details: ["+91 8447304372"],
       subtitle: "Mon-Fri from 9am to 6pm"
     },
     {

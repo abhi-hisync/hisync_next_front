@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { ArrowRight, Star, Shield, Award, Users, CheckCircle, Badge } from "lucide-react";
 import PremiumButton from "@/components/PremiumButton";
 
@@ -51,63 +50,31 @@ export default function CTASection() {
       </div>
       
       <div className="max-w-7xl mx-auto text-center relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="space-y-6 md:space-y-8"
-        >
+        <div className="space-y-6 md:space-y-8">
           {/* Enterprise Trust Badge */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="mb-6 md:mb-8"
-          >
+          <div className="mb-6 md:mb-8">
             <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full px-4 md:px-6 py-2 md:py-3 shadow-lg hover:shadow-xl transition-all duration-300">
               <Shield className="w-4 h-4 md:w-5 md:h-5" />
               <span className="text-sm md:text-base font-medium">Enterprise-Grade Solution</span>
               <Award className="w-4 h-4 md:w-5 md:h-5" />
             </div>
-
-             
-          </motion.div>
+          </div>
           
-          <motion.h2 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-5xl lg:text-6xl font-bold text-slate-800 leading-tight tracking-tight"
-          >
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-slate-800 leading-tight tracking-tight">
             Ready to Scale Your
             <br />
             <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
               Business Success?
             </span>
-          </motion.h2>
+          </h2>
           
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="text-lg md:text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed px-4"
-          >
+          <p className="text-lg md:text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed px-4">
             Join industry leaders who've accelerated their growth with our proven enterprise solutions. 
             <span className="text-slate-800 font-semibold">Transform your operations today.</span>
-          </motion.p>
+          </p>
           
           {/* CTA Buttons */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            viewport={{ once: true }}
-            className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center pt-6 md:pt-8 px-4"
-          >
+          <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center pt-6 md:pt-8 px-4">
             <PremiumButton 
               size="lg" 
               className="w-full sm:w-auto px-8 md:px-12 py-3 md:py-4 text-base md:text-lg bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-xl hover:shadow-2xl font-semibold tracking-wide group transition-all duration-300 transform hover:scale-105"
@@ -125,16 +92,10 @@ export default function CTASection() {
               <Users className="w-4 h-4 md:w-5 md:h-5 mr-2 md:mr-3 group-hover:scale-110 transition-transform duration-200" />
               Explore About Us
             </a>
-          </motion.div>
+          </div>
           
           {/* Social Proof with Real User Images */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            viewport={{ once: true }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 pt-6 md:pt-8"
-          >
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 pt-6 md:pt-8">
             <div className="flex items-center space-x-4 text-slate-600">
               <div className="flex -space-x-2">
                 <img 
@@ -173,16 +134,10 @@ export default function CTASection() {
                 <div className="text-sm text-slate-600">From 500+ Enterprise Clients</div>
               </div>
             </div>
-          </motion.div>
+          </div>
           
           {/* Enterprise Features & Timeline */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-            viewport={{ once: true }}
-            className="pt-8 md:pt-12 mt-8 md:mt-12 border-t border-slate-200"
-          >
+          <div className="pt-8 md:pt-12 mt-8 md:mt-12 border-t border-slate-200">
             {/* Trust Indicators */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 mb-8 md:mb-12">
               <div className="text-center space-y-2">
@@ -233,8 +188,8 @@ export default function CTASection() {
                 </div>
               </div>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );
