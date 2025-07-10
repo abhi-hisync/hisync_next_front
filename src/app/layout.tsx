@@ -11,7 +11,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "HiSync - Transform Your Business Holistically",
+  title: "HISYNC - Transform Your Business Holistically",
   description: "We are your agile end-to-end partner: Ex-Big 4 consultants streamline operations and elite top tiered engineers build custom ERP Solutions.",
 };
 
