@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Phone, ArrowRight, Shield, Zap, Users, Menu, X } from "lucide-react";
+import { ScheduleCall } from "@/components/ScheduleCall";
 import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 import Link from "next/link";
 import Image from "next/image";
@@ -200,21 +201,8 @@ export default function Navbar() {
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center space-x-3">
-            <Button
-              variant="ghost"
-              size="sm"
-              className={cn(
-                "font-medium px-4 py-2 rounded-lg transition-all duration-200 h-9",
-                isScrolled 
-                  ? "text-gray-600 hover:text-gray-900 hover:bg-gray-100/60"
-                  : "text-gray-800 hover:text-gray-700 hover:bg-white/20"
-              )}
-            >
-              <Phone className="w-4 h-4 mr-2" />
-              <span className="hidden lg:inline">Schedule Call</span>
-              <span className="lg:hidden">Call</span>
-            </Button>
-            
+            {/* Schedule Call Button */}
+            <ScheduleCall /> 
             <Button 
               size="sm"
               className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 h-9"
@@ -327,16 +315,9 @@ export default function Navbar() {
             <span>Contact</span>
             {isActive("/contact") && <div className="w-2 h-2 bg-blue-600 rounded-full" />}
           </Link>
-          
           {/* CTA Buttons */}
           <div className="pt-4 border-t border-gray-200/50 space-y-3 mt-4">
-            <Button
-              variant="ghost"
-              className="w-full justify-start text-gray-600 hover:text-gray-900 hover:bg-gray-50 font-medium py-3 px-4 rounded-lg"
-            >
-              <Phone className="w-4 h-4 mr-3" />
-              Schedule Call
-            </Button>
+            <ScheduleCall className="w-full !h-auto !py-3 !px-4" />
             
             <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg shadow-sm hover:shadow-md transition-all duration-200">
               <span className="flex items-center justify-center">

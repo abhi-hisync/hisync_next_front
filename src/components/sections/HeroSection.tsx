@@ -1,7 +1,7 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
-import { Award, ArrowRight, Play, Eye, Users, TrendingUp, Shield, Rocket } from "lucide-react";
+import { Zap, ArrowRight, Play, Eye, Users, TrendingUp, Shield, Rocket } from "lucide-react";
 import PremiumButton from "@/components/PremiumButton";
 import { motion } from "framer-motion";
 
@@ -121,8 +121,8 @@ export default function HeroSection({ showTooltip, setShowTooltip }: HeroSection
               variant="outline" 
               className="mb-6 px-4 py-2 bg-white/80 backdrop-blur-sm text-blue-700 border-blue-200 font-medium shadow-lg hover:shadow-xl transition-all duration-300"
             >
-              <Award className="w-4 h-4 mr-2" />
-              Trusted by Fortune 500 Companies
+              <Zap className="w-4 h-4 mr-2" />
+              Ready to Automate your Business
             </Badge>
           </div>
           
