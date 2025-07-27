@@ -1,5 +1,7 @@
 "use client";
 
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 import { useState } from "react";
 import { 
   Phone, 
@@ -33,6 +35,8 @@ export default function ContactPage() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -51,6 +55,7 @@ export default function ContactPage() {
       const result = await response.json();
 
       if (response.ok && result.success) {
+        setError(null);
         setIsSubmitted(true);
         setFormData({
           name: "",
@@ -63,11 +68,13 @@ export default function ContactPage() {
       } else {
         // Handle validation errors or other failures
         console.error('Submission failed:', result);
-        alert(result.message || 'An error occurred while submitting your inquiry. Please try again.');
+        setError(result.message || 'An error occurred while submitting your inquiry. Please try again.');
+
       }
     } catch (error) {
       console.error('Network error:', error);
-      alert('A network error occurred. Please check your connection and try again.');
+      setError('A network error occurred. Please check your connection and try again.');
+
     } finally {
       setIsSubmitting(false);
     }
@@ -79,31 +86,37 @@ export default function ContactPage() {
       [e.target.name]: e.target.value,
     });
   };
+  const handlePhoneChange = (phone: string) => {
+    setFormData({
+      ...formData,
+      phone: phone,
+    });
+  };
 
   const contactInfo = [
     {
       icon: <Phone className="w-6 h-6" />,
       title: "Phone",
-      details: ["+91 8447304372"],
-      subtitle: "Mon-Fri from 9am to 6pm"
+      details: ["+91 9891700140 | 8826532801 | 8447304372"],
+      subtitle: "Your voice matters. We’re always here to listen—and solve."
     },
     {
       icon: <Mail className="w-6 h-6" />,
       title: "Email",
       details: ["info@hisync.in"],
-      subtitle: "We'll respond within 24 hours"
+      subtitle: "Drop us a line. We reply faster than you can say ‘inbox zero’!"
     },
     {
       icon: <MapPin className="w-6 h-6" />,
       title: "Address",
-      details: ["A708, Sector 132, Noida", "Uttar Pradesh 201304"],
-      subtitle: "Visit us during business hours"
+      details: ["A708 ATS Bouquet, Sector 132, Noida", "Uttar Pradesh - 201304, India"],
+      subtitle: "Our door is open (literally). Come by for coffee and solutions!"
     },
     {
       icon: <Clock className="w-6 h-6" />,
       title: "Office Hours",
-      details: ["Monday - Friday: 9:00 AM - 6:00 PM EST", "Saturday - Sunday: Closed"],
-      subtitle: "EST (Eastern Standard Time)"
+      details: ["Monday - Friday: 9:30 AM - 6:30 PM IST (Indian Standard Time)"],
+      subtitle: "We align with global time zones – just ask!"
     },
   ];
 
@@ -177,7 +190,7 @@ export default function ContactPage() {
       {/* Hero Section */}
       <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-4xl mx-auto mb-16 animate-fade-in-up">
+          <div className="text-center max-w-4xl mx-auto mb-1 animate-fade-in-up">
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100/80 border border-blue-200/50 text-blue-700 text-sm font-semibold mb-6 shadow-sm">
               <Building2 className="w-4 h-4 mr-2" />
               Enterprise Contact
@@ -186,21 +199,18 @@ export default function ContactPage() {
               Let's Build Something
               <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent"> Amazing</span>
             </h1>
-            <p className="text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto">
-              Ready to transform your business? Our enterprise solutions team is here to help you achieve your goals with cutting-edge technology and expert guidance.
-            </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
             {/* Contact Form */}
             <div className="animate-fade-in-delay-200">
               <Card className="p-8 shadow-xl border-0 bg-white/70 backdrop-blur-xl">
-                <div className="mb-8">
+                <div className="mb-0.6">
                   <h2 className="text-2xl font-bold text-slate-900 mb-2">Get In Touch</h2>
                   <p className="text-slate-600">Tell us about your project and we'll get back to you soon.</p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-3">
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-semibold text-slate-700 mb-2">
@@ -213,7 +223,7 @@ export default function ContactPage() {
                         onChange={handleInputChange}
                         required
                         className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 bg-white/80"
-                        placeholder="John Doe"
+                        
                       />
                     </div>
                     <div>
@@ -227,7 +237,7 @@ export default function ContactPage() {
                         onChange={handleInputChange}
                         required
                         className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 bg-white/80"
-                        placeholder="john@company.com"
+                      
                       />
                     </div>
                   </div>
@@ -235,28 +245,31 @@ export default function ContactPage() {
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-semibold text-slate-700 mb-2">
-                        Company
+                        Company *
                       </label>
                       <input
                         type="text"
                         name="company"
                         value={formData.company}
                         onChange={handleInputChange}
+                        required
                         className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 bg-white/80"
-                        placeholder="Your Company"
+                        
                       />
                     </div>
                     <div>
                       <label className="block text-sm font-semibold text-slate-700 mb-2">
-                        Phone Number
+                        Phone Number *
                       </label>
-                      <input
-                        type="tel"
-                        name="phone"
+                      <PhoneInput
+                        country={'in'}
                         value={formData.phone}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 bg-white/80"
-                        placeholder="+1 (555) 123-4567"
+                        onChange={handlePhoneChange}
+                        containerClass="w-full"
+                        inputClass="!w-full !h-auto !py-3 !pl-14 !pr-4 !rounded-xl !border !border-slate-200 focus:!ring-2 focus:!ring-blue-500 focus:!border-transparent !transition-all !duration-300 !bg-white/80"
+                        buttonClass="!bg-transparent !border-0 !border-r !border-slate-200 !rounded-l-xl hover:!bg-slate-50"
+                        placeholder="12345 67890"
+                        inputProps={{ name: "phone", required: true, }}
                       />
                     </div>
                   </div>
@@ -289,11 +302,16 @@ export default function ContactPage() {
                       value={formData.message}
                       onChange={handleInputChange}
                       required
-                      rows={5}
+                      rows={3}
                       className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 bg-white/80 resize-none"
                       placeholder="Tell us about your project requirements..."
                     />
                   </div>
+                  {error && (
+                    <div className="sm:col-span-2 text-red-600 bg-red-100 border border-red-300 p-3 rounded-lg text-sm">
+                      <strong>Error:</strong> {error}
+                    </div>
+                  )}
 
                   <div className="hover:scale-105 transition-transform duration-200">
                     <Button
@@ -319,21 +337,44 @@ export default function ContactPage() {
             </div>
 
             {/* Contact Information */}
-            <div className="space-y-8 animate-fade-in-delay-400">
+            <div className="flex flex-col gap-8 lg:gap-0 lg:justify-between h-full animate-fade-in-delay-400">
               {contactInfo.map((info, index) => (
                 <div
                   key={info.title}
                   className={`animate-fade-in-delay-${(index + 1) * 100}`}
                 >
-                  <Card className="p-6 shadow-lg border-0 bg-white/60 backdrop-blur-xl hover:bg-white/80 transition-all duration-300 group">
+                  <Card className="p-5 shadow-lg border-0 bg-white/60 backdrop-blur-xl hover:bg-white/80 transition-all duration-300 group">
                     <div className="flex items-start space-x-4">
                       <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-xl flex items-center justify-center text-blue-600 group-hover:scale-110 transition-transform duration-300">
                         {info.icon}
                       </div>
                       <div className="flex-1">
                         <h3 className="text-lg font-semibold text-slate-900 mb-2">{info.title}</h3>
-                        {info.details.map((detail, idx) => (
-                          <p key={idx} className="text-slate-700 font-medium mb-1">{detail}</p>
+                                                {info.title === 'Phone' && (
+                          <div className="flex flex-wrap gap-x-4 gap-y-1">
+                            {info.details[0].split(' | ').map((phone, phoneIdx) => (
+                              <a key={phoneIdx} href={`tel:${phone.replace(/\s/g, '')}`} className="text-slate-700 font-medium hover:text-blue-600 transition-colors">
+                                {phone.trim()}
+                              </a>
+                            ))}
+                          </div>
+                        )}
+                        {info.title === 'Email' && info.details.map((detail, idx) => (
+                          <a key={idx} href={`mailto:${detail}`} className="text-slate-700 font-medium mb-1 block hover:text-blue-600 transition-colors">
+                            {detail}
+                          </a>
+                        ))}
+                        {info.title === 'Address' && (
+                          <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(info.details.join(', '))}`} target="_blank" rel="noopener noreferrer" className="block group/address">
+                            {info.details.map((line, lineIdx) => (
+                              <p key={lineIdx} className="text-slate-700 font-medium mb-1 group-hover/address:text-blue-600 transition-colors">{line}</p>
+                            ))}
+                          </a>
+                        )}
+                        {info.title === 'Office Hours' && info.details.map((detail, idx) => (
+                          <p key={idx} className="text-slate-700 font-medium mb-1">
+                            {detail}
+                          </p>
                         ))}
                         <p className="text-sm text-slate-500 mt-2">{info.subtitle}</p>
                       </div>
@@ -341,67 +382,10 @@ export default function ContactPage() {
                   </Card>
                 </div>
               ))}
-
-              {/* Quick Actions */}
-              <div className="space-y-4 animate-fade-in-delay-500">
-                <h3 className="text-xl font-semibold text-slate-900 mb-4">Quick Actions</h3>
-                
-                <div className="hover:scale-105 transition-transform duration-200">
-                  <Button
-                    variant="outline"
-                    className="w-full justify-between text-left h-auto p-4 border-slate-200 hover:border-blue-300 hover:bg-blue-50/50 transition-all duration-300 group"
-                  >
-                    <div className="flex items-center">
-                      <Calendar className="w-5 h-5 mr-3 text-blue-600" />
-                      <div>
-                        <div className="font-semibold text-slate-900">Schedule a Call</div>
-                        <div className="text-sm text-slate-500">Book a 30-minute consultation</div>
-                      </div>
-                    </div>
-                    <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all duration-300" />
-                  </Button>
-                </div>
-
-                <div className="hover:scale-105 transition-transform duration-200">
-                  <Button
-                    variant="outline"
-                    className="w-full justify-between text-left h-auto p-4 border-slate-200 hover:border-blue-300 hover:bg-blue-50/50 transition-all duration-300 group"
-                  >
-                    <div className="flex items-center">
-                      <Users className="w-5 h-5 mr-3 text-blue-600" />
-                      <div>
-                        <div className="font-semibold text-slate-900">Live Chat Support</div>
-                        <div className="text-sm text-slate-500">Get instant help from our team</div>
-                      </div>
-                    </div>
-                    <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all duration-300" />
-                  </Button>
-                </div>
-
-                {/* Social Links */}
-                <div className="pt-6">
-                  <h4 className="text-sm font-semibold text-slate-700 mb-4">Follow Us</h4>
-                  <div className="flex space-x-3">
-                    {[
-                      { icon: <Linkedin className="w-5 h-5" />, color: "hover:bg-blue-600" },
-                      { icon: <Twitter className="w-5 h-5" />, color: "hover:bg-sky-500" },
-                      { icon: <Facebook className="w-5 h-5" />, color: "hover:bg-blue-700" }
-                    ].map((social, index) => (
-                      <button
-                        key={index}
-                        className={`w-10 h-10 bg-slate-100 hover:text-white ${social.color} rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110`}
-                      >
-                        {social.icon}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
       </section>
-
       {/* Map Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-slate-50/50">
         <div className="max-w-7xl mx-auto">
@@ -411,13 +395,18 @@ export default function ContactPage() {
               Located in Noida, Sector 132, our office is easily accessible and equipped with modern facilities for client meetings.
             </p>
           </div>
-
-          <div className="bg-gradient-to-br from-slate-100 to-slate-200 h-96 rounded-2xl flex items-center justify-center animate-fade-in-delay-200">
-            <div className="text-center">
-              <MapPin className="w-16 h-16 text-slate-400 mx-auto mb-4" />
-              <p className="text-slate-600 text-lg">Interactive Map Coming Soon</p>
-              <p className="text-slate-500 text-sm">A708, Sector 132, Noida, Uttar Pradesh 201304</p>
-            </div>
+            <div className="h-96 rounded-2xl overflow-hidden shadow-lg border border-slate-200/50 animate-fade-in-delay-200">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3505.039911959824!2d77.3943493753556!3d28.53850897571698!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5a800000001%3A0x1914a7a5057558f6!2sATS%20Bouquet!5e0!3m2!1sen!2sin!4v1716191234567!5m2!1sen!2sin"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen={true}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="HiSync Office Location"
+              className="grayscale-[20%] contrast-125"
+            ></iframe>
           </div>
         </div>
       </section>

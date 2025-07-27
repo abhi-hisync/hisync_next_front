@@ -569,9 +569,8 @@ export default function AboutPage() {
 
             {/* Trust indicators */}
             <div className="pt-12 border-t border-slate-200/50">
-              <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
+              <div className="grid grid-cols-2 gap-8 max-w-md mx-auto">
                 {[
-                  { icon: <Shield className="w-6 h-6" />, text: "SOC 2 Compliant" },
                   { icon: <CheckCircle className="w-6 h-6" />, text: "99.9% Uptime" },
                   { icon: <Award className="w-6 h-6" />, text: "24/7 Support" }
                 ].map((item, index) => (
