@@ -107,7 +107,7 @@ export default function AboutPage() {
               </Badge>
             </div>
             
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-slate-900 mb-8 leading-[0.9] tracking-tight">
+            <h1 className="text-5xl md:text-7xl font-bold text-slate-900 mb-8 leading-[0.9] tracking-tight">
               About
               <br />
               <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
@@ -116,15 +116,15 @@ export default function AboutPage() {
             </h1>
             
             <p className="text-xl md:text-2xl text-slate-600 max-w-5xl mx-auto leading-relaxed font-light mb-12">
-              Where strategic innovation meets <span className="text-blue-600 font-medium">cutting-edge technology</span> to transform enterprise landscapes worldwide
+              Where strategic innovation meets <span className="text-blue-600 font-medium">cutting-edge technology</span> - a fresh startup powered by 20+ years of combined expertise, ready to transform enterprise landscapes worldwide
             </p>
 
             {/* Stats preview */}
             <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto mt-16 animate-fade-in-delay-300">
               {[
                 { number: "20+", label: "Years Experience" },
-                { number: "500+", label: "Enterprise Clients" },
-                { number: "20+", label: "Global Markets" }
+                { number: "Ready", label: "To Launch" },
+                { number: "Fresh", label: "Startup Vision" }
               ].map((stat, index) => (
                 <div key={index} className="text-center">
                   <div className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">{stat.number}</div>
