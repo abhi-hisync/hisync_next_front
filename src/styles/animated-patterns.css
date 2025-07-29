@@ -1,0 +1,261 @@
+/* CSS-only animated background patterns for lightweight performance */
+
+/* Diagonal Stripes Pattern */
+.diagonal-stripes {
+  background-image: 
+    repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.08) 0px,
+      rgba(255, 255, 255, 0.08) 2px,
+      transparent 2px,
+      transparent 40px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0.04) 0px,
+      rgba(255, 255, 255, 0.04) 1px,
+      transparent 1px,
+      transparent 60px
+    );
+  background-size: 56px 56px, 84px 84px;
+  animation: stripes-move 20s linear infinite, stripes-counter 25s linear infinite;
+}
+
+.diagonal-stripes.dark {
+  background-image: 
+    repeating-linear-gradient(
+      45deg,
+      rgba(0, 0, 0, 0.08) 0px,
+      rgba(0, 0, 0, 0.08) 2px,
+      transparent 2px,
+      transparent 40px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(0, 0, 0, 0.04) 0px,
+      rgba(0, 0, 0, 0.04) 1px,
+      transparent 1px,
+      transparent 60px
+    );
+}
+
+@keyframes stripes-move {
+  0% { background-position: 0% 0%, 100% 0%; }
+  100% { background-position: 100% 100%, 0% 100%; }
+}
+
+@keyframes stripes-counter {
+  0% { background-position: 100% 0%, 0% 0%; }
+  100% { background-position: 0% 100%, 100% 100%; }
+}
+
+/* Triangular Grid Pattern - CSS fallback */
+.triangular-grid {
+  background-image: 
+    radial-gradient(circle at 30px 26px, rgba(255, 255, 255, 0.1) 2px, transparent 2px),
+    radial-gradient(circle at 15px 39px, rgba(255, 255, 255, 0.05) 1.5px, transparent 1.5px),
+    radial-gradient(circle at 45px 39px, rgba(255, 255, 255, 0.05) 1.5px, transparent 1.5px);
+  background-size: 60px 52px;
+  animation: triangular-float 8s ease-in-out infinite;
+}
+
+.triangular-grid.dark {
+  background-image: 
+    radial-gradient(circle at 30px 26px, rgba(0, 0, 0, 0.1) 2px, transparent 2px),
+    radial-gradient(circle at 15px 39px, rgba(0, 0, 0, 0.05) 1.5px, transparent 1.5px),
+    radial-gradient(circle at 45px 39px, rgba(0, 0, 0, 0.05) 1.5px, transparent 1.5px);
+}
+
+@keyframes triangular-float {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.7; }
+  50% { transform: translate(10px, -5px) scale(1.02); opacity: 1; }
+}
+
+/* Vertical Bars Pattern */
+.vertical-bars {
+  background-image: 
+    linear-gradient(to top, rgba(255, 255, 255, 0.1) 30%, transparent 30%),
+    linear-gradient(to top, rgba(255, 255, 255, 0.08) 50%, transparent 50%),
+    linear-gradient(to top, rgba(255, 255, 255, 0.06) 40%, transparent 40%),
+    linear-gradient(to top, rgba(255, 255, 255, 0.1) 60%, transparent 60%),
+    linear-gradient(to top, rgba(255, 255, 255, 0.05) 35%, transparent 35%);
+  background-size: 20px 100%, 25px 100%, 18px 100%, 30px 100%, 22px 100%;
+  background-position: 0% 100%, 20px 100%, 40px 100%, 60px 100%, 80px 100%;
+  background-repeat: repeat-x;
+  animation: bars-dance 3s ease-in-out infinite;
+}
+
+.vertical-bars.dark {
+  background-image: 
+    linear-gradient(to top, rgba(0, 0, 0, 0.1) 30%, transparent 30%),
+    linear-gradient(to top, rgba(0, 0, 0, 0.08) 50%, transparent 50%),
+    linear-gradient(to top, rgba(0, 0, 0, 0.06) 40%, transparent 40%),
+    linear-gradient(to top, rgba(0, 0, 0, 0.1) 60%, transparent 60%),
+    linear-gradient(to top, rgba(0, 0, 0, 0.05) 35%, transparent 35%);
+}
+
+@keyframes bars-dance {
+  0%, 100% { 
+    background-size: 20px 100%, 25px 100%, 18px 100%, 30px 100%, 22px 100%;
+    opacity: 0.7;
+  }
+  50% { 
+    background-size: 22px 100%, 28px 100%, 20px 100%, 35px 100%, 25px 100%;
+    opacity: 1;
+  }
+}
+
+/* Sliding overlay effect for bars */
+.vertical-bars::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.1) 50%, 
+    transparent 100%
+  );
+  animation: slide-overlay 5s ease-in-out infinite;
+}
+
+.vertical-bars.dark::after {
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(0, 0, 0, 0.1) 50%, 
+    transparent 100%
+  );
+}
+
+@keyframes slide-overlay {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* Neumorphic floating icon styles */
+.neumorphic-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 16px;
+  position: relative;
+  transition: all 0.3s ease;
+  animation: float-icon 6s ease-in-out infinite;
+}
+
+.neumorphic-icon.light {
+  background: #1e293b;
+  box-shadow: 
+    12px 12px 24px rgba(0, 0, 0, 0.4),
+    -12px -12px 24px rgba(255, 255, 255, 0.05),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.neumorphic-icon.dark {
+  background: #f1f5f9;
+  box-shadow: 
+    12px 12px 24px rgba(0, 0, 0, 0.15),
+    -12px -12px 24px rgba(255, 255, 255, 0.9),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+.neumorphic-icon:hover {
+  transform: scale(1.1) rotate(5deg);
+  animation-play-state: paused;
+}
+
+@keyframes float-icon {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-8px) rotate(2deg); }
+  66% { transform: translateY(-4px) rotate(-2deg); }
+}
+
+/* Icon inner container */
+.icon-inner {
+  position: absolute;
+  inset: 8px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease;
+  animation: icon-pulse 4s ease-in-out infinite;
+}
+
+.neumorphic-icon:hover .icon-inner {
+  transform: scale(0.9);
+}
+
+@keyframes icon-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Entrance animations */
+.card-entrance {
+  animation: card-slide-up 0.7s ease-out forwards;
+}
+
+@keyframes card-slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Hover effects */
+.card-hover {
+  transition: all 0.5s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Button animations */
+.btn-primary {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .neumorphic-icon {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .diagonal-stripes,
+  .triangular-grid,
+  .vertical-bars {
+    background-size: 40px 40px, 60px 60px;
+  }
+}

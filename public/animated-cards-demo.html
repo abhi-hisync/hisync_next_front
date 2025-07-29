@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Dashboard Cards - Pure CSS</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 1rem;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Card container */
+        .cards-grid {
+            display: grid;
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Base card styles */
+        .card {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 55fr 45fr;
+            height: 320px;
+            position: relative;
+            transition: all 0.5s ease;
+            animation: cardEntrance 0.7s ease-out forwards;
+        }
+
+        .card:hover {
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Phase badge */
+        .phase-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 1rem;
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #374151;
+            z-index: 10;
+            animation: badgeEntrance 0.4s ease-out 0.3s both;
+        }
+
+        /* Content section */
+        .card-content {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        }
+
+        .card-content.dark {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-icon {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-icon:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .card-subtitle {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #64748b;
+        }
+
+        .card-content.dark .card-subtitle {
+            color: #94a3b8;
+        }
+
+        .card-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 0.75rem;
+            line-height: 1.2;
+        }
+
+        .card-content.dark .card-title {
+            color: white;
+        }
+
+        .card-description {
+            font-size: 0.9rem;
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-content.dark .card-description {
+            color: #cbd5e1;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            padding: 0.625rem 1.25rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            color: white;
+            border: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #374151;
+            border: 1px solid #d1d5db;
+        }
+
+        .btn-secondary:hover {
+            background: #f9fafb;
+            border-color: #9ca3af;
+            transform: translateY(-1px);
+        }
+
+        .card-content.dark .btn-secondary {
+            color: #e2e8f0;
+            border-color: #475569;
+        }
+
+        .card-content.dark .btn-secondary:hover {
+            background: rgba(71, 85, 105, 0.5);
+            border-color: #64748b;
+        }
+
+        /* Pattern section */
+        .card-pattern {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pattern-light {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        }
+
+        .pattern-dark {
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+        }
+
+        /* Floating icon in pattern area */
+        .floating-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 5rem;
+            height: 5rem;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            animation: floatIcon 6s ease-in-out infinite;
+            z-index: 5;
+        }
+
+        .floating-icon.light {
+            background: #1e293b;
+            box-shadow: 
+                8px 8px 16px rgba(0, 0, 0, 0.3),
+                -8px -8px 16px rgba(255, 255, 255, 0.05);
+        }
+
+        .floating-icon.dark {
+            background: #f1f5f9;
+            box-shadow: 
+                8px 8px 16px rgba(0, 0, 0, 0.1),
+                -8px -8px 16px rgba(255, 255, 255, 0.9);
+        }
+
+        .floating-icon:hover {
+            transform: translate(-50%, -50%) scale(1.1) rotate(10deg);
+            animation-play-state: paused;
+        }
+
+        .floating-icon-inner {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            border-radius: 0.75rem;
+            width: calc(100% - 1rem);
+            height: calc(100% - 1rem);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .floating-icon:hover .floating-icon-inner {
+            transform: scale(0.9);
+        }
+
+        /* Pattern animations */
+        .diagonal-stripes {
+            background-image: 
+                repeating-linear-gradient(
+                    45deg,
+                    rgba(255, 255, 255, 0.08) 0px,
+                    rgba(255, 255, 255, 0.08) 2px,
+                    transparent 2px,
+                    transparent 30px
+                );
+            background-size: 42px 42px;
+            animation: stripesMove 15s linear infinite;
+        }
+
+        .diagonal-stripes.dark {
+            background-image: 
+                repeating-linear-gradient(
+                    45deg,
+                    rgba(0, 0, 0, 0.08) 0px,
+                    rgba(0, 0, 0, 0.08) 2px,
+                    transparent 2px,
+                    transparent 30px
+                );
+        }
+
+        .triangular-grid {
+            background-image: 
+                radial-gradient(circle at 20px 20px, rgba(255, 255, 255, 0.1) 2px, transparent 2px);
+            background-size: 40px 40px;
+            animation: triangularFloat 6s ease-in-out infinite;
+        }
+
+        .triangular-grid.dark {
+            background-image: 
+                radial-gradient(circle at 20px 20px, rgba(0, 0, 0, 0.1) 2px, transparent 2px);
+        }
+
+        .vertical-bars {
+            background-image: 
+                linear-gradient(to top, rgba(255, 255, 255, 0.1) 30%, transparent 30%),
+                linear-gradient(to top, rgba(255, 255, 255, 0.08) 50%, transparent 50%),
+                linear-gradient(to top, rgba(255, 255, 255, 0.06) 40%, transparent 40%);
+            background-size: 15px 100%, 20px 100%, 12px 100%;
+            background-position: 0% 100%, 15px 100%, 30px 100%;
+            background-repeat: repeat-x;
+            animation: barsDance 3s ease-in-out infinite;
+        }
+
+        .vertical-bars.dark {
+            background-image: 
+                linear-gradient(to top, rgba(0, 0, 0, 0.1) 30%, transparent 30%),
+                linear-gradient(to top, rgba(0, 0, 0, 0.08) 50%, transparent 50%),
+                linear-gradient(to top, rgba(0, 0, 0, 0.06) 40%, transparent 40%);
+        }
+
+        /* Keyframe animations */
+        @keyframes cardEntrance {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes badgeEntrance {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) rotate(-5deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        @keyframes floatIcon {
+            0%, 100% { transform: translate(-50%, -50%) translateY(0px) rotate(0deg); }
+            33% { transform: translate(-50%, -50%) translateY(-6px) rotate(2deg); }
+            66% { transform: translate(-50%, -50%) translateY(-3px) rotate(-2deg); }
+        }
+
+        @keyframes stripesMove {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+        @keyframes triangularFloat {
+            0%, 100% { transform: translate(0, 0); opacity: 0.7; }
+            50% { transform: translate(5px, -3px); opacity: 1; }
+        }
+
+        @keyframes barsDance {
+            0%, 100% { 
+                background-size: 15px 100%, 20px 100%, 12px 100%;
+                opacity: 0.7;
+            }
+            50% { 
+                background-size: 18px 100%, 25px 100%, 15px 100%;
+                opacity: 1;
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .card {
+                grid-template-columns: 1fr;
+                height: auto;
+                min-height: 400px;
+            }
+            
+            .card-content {
+                padding: 1.5rem;
+            }
+            
+            .card-title {
+                font-size: 1.5rem;
+            }
+            
+            .floating-icon {
+                width: 4rem;
+                height: 4rem;
+            }
+        }
+
+        /* Utility classes for different gradients */
+        .gradient-blue { background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%); }
+        .gradient-green { background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%); }
+        .gradient-red { background: linear-gradient(135deg, #ef4444 0%, #ec4899 100%); }
+        .gradient-purple { background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%); }
+        .gradient-orange { background: linear-gradient(135deg, #f97316 0%, #eab308 100%); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Animated Dashboard Cards</h1>
+            <p>Modern card components with custom animated backgrounds and neumorphic floating icons</p>
+        </div>
+
+        <div class="cards-grid">
+            <!-- Card 1: Diagonal Stripes -->
+            <div class="card">
+                <div class="phase-badge">PHASE 01</div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <div class="card-icon gradient-blue">
+                            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+                            </svg>
+                        </div>
+                        <div class="card-subtitle">Data Intelligence</div>
+                    </div>
+                    <h3 class="card-title">Analytics Dashboard</h3>
+                    <p class="card-description">Transform raw data into actionable insights with our comprehensive analytics platform. Monitor performance metrics and track KPIs in real-time.</p>
+                    <div class="card-actions">
+                        <a href="#" class="btn btn-primary">View Analytics</a>
+                        <a href="#" class="btn btn-secondary">Explore</a>
+                    </div>
+                </div>
+                <div class="card-pattern pattern-light">
+                    <div class="diagonal-stripes"></div>
+                    <div class="floating-icon light">
+                        <div class="floating-icon-inner">
+                            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Triangular Grid -->
+            <div class="card">
+                <div class="phase-badge">PHASE 02</div>
+                <div class="card-content dark">
+                    <div class="card-header">
+                        <div class="card-icon gradient-green">
+                            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+                            </svg>
+                        </div>
+                        <div class="card-subtitle">Operations Management</div>
+                    </div>
+                    <h3 class="card-title">System Control Hub</h3>
+                    <p class="card-description">Streamline operations with intelligent automation and monitoring. Ensure optimal performance across all your systems and infrastructure.</p>
+                    <div class="card-actions">
+                        <a href="#" class="btn btn-primary">Manage Systems</a>
+                        <a href="#" class="btn btn-secondary">Configure</a>
+                    </div>
+                </div>
+                <div class="card-pattern pattern-dark">
+                    <div class="triangular-grid dark"></div>
+                    <div class="floating-icon dark">
+                        <div class="floating-icon-inner gradient-green">
+                            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Vertical Bars -->
+            <div class="card">
+                <div class="phase-badge">PHASE 03</div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <div class="card-icon gradient-red">
+                            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+                            </svg>
+                        </div>
+                        <div class="card-subtitle">Protection Suite</div>
+                    </div>
+                    <h3 class="card-title">Security Center</h3>
+                    <p class="card-description">Comprehensive security monitoring and threat detection. Protect your digital assets with advanced compliance and access control features.</p>
+                    <div class="card-actions">
+                        <a href="#" class="btn btn-primary">Security Panel</a>
+                        <a href="#" class="btn btn-secondary">Reports</a>
+                    </div>
+                </div>
+                <div class="card-pattern pattern-light">
+                    <div class="vertical-bars"></div>
+                    <div class="floating-icon light">
+                        <div class="floating-icon-inner gradient-red">
+                            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

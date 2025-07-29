@@ -11,6 +11,8 @@ import EAMPhasesSection from "@/components/sections/EAMPhasesSection";
 import CTASection from "@/components/sections/CTASection";
 import AboutSection from "@/components/sections/AboutSection";
 import FooterSection from "@/components/sections/FooterSection";
+import PremiumDashboardCard from "@/components/ui/PremiumDashboardCard";
+import { TrendingUp } from "lucide-react";
 
 export default function Home() {
   const [showTooltip, setShowTooltip] = useState<string | null>(null);
@@ -27,12 +29,12 @@ export default function Home() {
       
       {/* <AssessmentSection showTooltip={showTooltip} setShowTooltip={setShowTooltip} /> */}
       
-      {/* <ProcessSection /> */}
+      <ProcessSection />
       
       <CTASection />
       
       <AboutSection />
-      
+   
       <FooterSection />
     </div>
   );
