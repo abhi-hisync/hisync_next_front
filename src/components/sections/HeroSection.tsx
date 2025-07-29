@@ -191,10 +191,10 @@ export default function HeroSection({ showTooltip, setShowTooltip }: HeroSection
           {/* Stats Section */}
           <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { value: "500+", label: "Clients", icon: <Users className="w-5 h-5" /> },
-              { value: "87%", label: "Success Rate", icon: <TrendingUp className="w-5 h-5" /> },
-              { value: "24/7", label: "Support", icon: <Shield className="w-5 h-5" /> },
-              { value: "3.2x", label: "ROI", icon: <Rocket className="w-5 h-5" /> }
+              { value: "Fresh", label: "Startup", icon: <Rocket className="w-5 h-5" /> },
+              { value: "100%", label: "Dedication", icon: <TrendingUp className="w-5 h-5" /> },
+              { value: "24/7", label: "Available", icon: <Shield className="w-5 h-5" /> },
+              { value: "Ready", label: "To Scale", icon: <Users className="w-5 h-5" /> }
             ].map((stat, index) => (
               <div
                 key={index}

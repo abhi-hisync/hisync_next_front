@@ -7,6 +7,7 @@ import HeroSection from "@/components/sections/HeroSection";
 import ServicesSection from "@/components/sections/ServicesSection";
 import AssessmentSection from "@/components/sections/AssessmentSection";
 import ProcessSection from "@/components/sections/ProcessSection";
+import EAMPhasesSection from "@/components/sections/EAMPhasesSection";
 import CTASection from "@/components/sections/CTASection";
 import AboutSection from "@/components/sections/AboutSection";
 import FooterSection from "@/components/sections/FooterSection";
@@ -22,9 +23,11 @@ export default function Home() {
       
       <ServicesSection />
       
+      <EAMPhasesSection />
+      
       {/* <AssessmentSection showTooltip={showTooltip} setShowTooltip={setShowTooltip} /> */}
       
-      <ProcessSection />
+      {/* <ProcessSection /> */}
       
       <CTASection />
       

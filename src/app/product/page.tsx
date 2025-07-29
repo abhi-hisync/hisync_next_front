@@ -26,10 +26,10 @@ export default function ProductPage() {
       <ProblemSection />
       <SolutionSection />
       <FeaturesSection />
-      <RoadmapSection />
-      <WorkflowSection />
+      {/* <RoadmapSection /> */}
+      {/* <WorkflowSection />
       <ReVerificationSection />
-      <CaseStudySection />
+      <CaseStudySection /> */}
       <FAQSection />
       <ProductCTA />
       
