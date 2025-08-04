@@ -9,6 +9,8 @@ first need to do
 ```bash
 npm install
 ```
+
+to run the dev
 ```bash
 npm run dev
 
