@@ -8,9 +8,10 @@ interface InteractiveCounterProps {
   label: string;
   icon: React.ReactNode;
   delay?: number;
+  suffix?: React.ReactNode;
 }
 
-export default function InteractiveCounter({ end, label, icon, delay = 0 }: InteractiveCounterProps) {
+export default function InteractiveCounter({ end, label, icon, delay = 0, suffix }: InteractiveCounterProps) {
   const [count, setCount] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -52,13 +53,15 @@ export default function InteractiveCounter({ end, label, icon, delay = 0 }: Inte
       >
         {icon}
       </motion.div>
-      <div className="text-4xl md:text-5xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors duration-300">
+      <div className="text-4xl md:text-5xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors duration-300 flex items-center justify-center gap-1">
         {typeof end === 'string' ? end : count}
         {typeof end === 'number' && end > 100 ? '+' : ''}
+        {suffix}
       </div>
       <div className="text-slate-600 font-medium group-hover:text-slate-700 transition-colors duration-300">
         {label}
       </div>
+      {/* <Percent /> */}
     </motion.div>
   );
 }
