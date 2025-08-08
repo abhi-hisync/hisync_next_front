@@ -122,7 +122,7 @@ export function ScheduleCall({ className }: { className?: string }) {
       <Button
         onClick={() => setOpen(true)}
         size="sm"
-        className={cn("bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 h-9", className)}
+        className={cn("cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 h-9", className)}
       >
         Schedule Call
       </Button>
