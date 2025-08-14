@@ -20,21 +20,21 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
-      
+
       <HeroSection showTooltip={showTooltip} setShowTooltip={setShowTooltip} />
-      
+
       <ServicesSection />
-      
+
       <EAMPhasesSection />
-      
+
       {/* <AssessmentSection showTooltip={showTooltip} setShowTooltip={setShowTooltip} /> */}
-      
+
       <ProcessSection />
-      
+
       <CTASection />
-      
+
       <AboutSection />
-   
+
       <FooterSection />
     </div>
   );

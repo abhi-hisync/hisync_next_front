@@ -210,7 +210,7 @@ export default function Navbar() {
               size="sm"
               className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 h-9"
             >
-              <span className="hidden lg:inline">Get Started</span>
+              <span className="hidden cursor-pointer lg:inline">Get Started</span>
               <span className="lg:hidden">Start</span>
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
