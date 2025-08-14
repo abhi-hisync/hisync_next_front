@@ -64,7 +64,7 @@ export default function AboutPage() {
       expertise:
         "Ujjwal is a Chartered Accountant from India qualified at young age of 22.",
       experience: "14+ years",
-      image: "/images/our_team/ujjwal.webp",
+      image: "/images/our_team/ujjwal.png",
     },
   ];
 
