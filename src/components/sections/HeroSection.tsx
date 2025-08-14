@@ -1,16 +1,34 @@
 "use client";
 
+import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
-import { Zap, ArrowRight, Play, Eye, Users, TrendingUp, Shield, Rocket } from "lucide-react";
+import {
+  Zap,
+  ArrowRight,
+  Play,
+  Eye,
+  Users,
+  TrendingUp,
+  Shield,
+  Rocket,
+} from "lucide-react";
 import PremiumButton from "@/components/PremiumButton";
 import { motion } from "framer-motion";
+import { X } from "lucide-react";
 
 interface HeroSectionProps {
   showTooltip: string | null;
   setShowTooltip: (tooltip: string | null) => void;
 }
 
-export default function HeroSection({ showTooltip, setShowTooltip }: HeroSectionProps) {
+// export default function HeroSection({ showTooltip, setShowTooltip }: HeroSectionProps) {
+//   const [showVideo, setShowVideo] = useState(false); // <-- Add this line
+
+export default function HeroSection({
+  showTooltip,
+  setShowTooltip,
+}: HeroSectionProps) {
+  const [showVideo, setShowVideo] = useState(false);
   return (
     <section id="home" className="relative min-h-screen flex items-center py-20 px-4 overflow-hidden bg-gradient-to-b from-slate-950 to-slate-500">
       {/* Background Elements */}
@@ -74,7 +92,7 @@ export default function HeroSection({ showTooltip, setShowTooltip }: HeroSection
               Ready to Automate your Business
             </Badge>
           </div>
-          
+
           {/* Main Heading */}
           <h1 className="text-5xl md:text-7xl font-bold text-slate-50 leading-tight tracking-tight">
             Transform Your Business
@@ -83,7 +101,7 @@ export default function HeroSection({ showTooltip, setShowTooltip }: HeroSection
               Holistically
             </span>
           </h1>
-          
+
           {/* Description */}
           <p className="text-xl md:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed font-light">
             We are your agile end-to-end partner: Ex-Big 4 consultants streamline 
@@ -138,10 +156,26 @@ export default function HeroSection({ showTooltip, setShowTooltip }: HeroSection
           {/* Stats Section */}
           <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { value: "Fresh", label: "Startup", icon: <Rocket className="w-5 h-5" /> },
-              { value: "100%", label: "Dedication", icon: <TrendingUp className="w-5 h-5" /> },
-              { value: "24/7", label: "Available", icon: <Shield className="w-5 h-5" /> },
-              { value: "Ready", label: "To Scale", icon: <Users className="w-5 h-5" /> }
+              {
+                value: "Fresh",
+                label: "Startup",
+                icon: <Rocket className="w-5 h-5" />,
+              },
+              {
+                value: "100%",
+                label: "Dedication",
+                icon: <TrendingUp className="w-5 h-5" />,
+              },
+              {
+                value: "24/7",
+                label: "Available",
+                icon: <Shield className="w-5 h-5" />,
+              },
+              {
+                value: "Ready",
+                label: "To Scale",
+                icon: <Users className="w-5 h-5" />,
+              },
             ].map((stat, index) => (
               <div
                 key={index}
@@ -184,3 +218,4 @@ export default function HeroSection({ showTooltip, setShowTooltip }: HeroSection
     </section>
   );
 }
+
