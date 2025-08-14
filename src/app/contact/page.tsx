@@ -22,6 +22,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Navbar from "@/components/Navbar";
+import { cn } from "@/lib/utils";
 import FooterSection from "@/components/sections/FooterSection";
 
 export default function ContactPage() {
@@ -98,25 +99,49 @@ export default function ContactPage() {
       icon: <Phone className="w-6 h-6" />,
       title: "Phone",
       details: ["+91 9891700140 | 8826532801 | 8447304372"],
-      subtitle: "Your voice matters. We’re always here to listen—and solve."
+      subtitle: "Your voice matters. We’re always here to listen—and solve.",
+      colors: {
+        bg: "from-blue-100/70 to-blue-200/60",
+        hoverBg: "hover:from-blue-200/80 hover:to-blue-300/70",
+        iconBg: "from-blue-600 to-indigo-600",
+        iconText: "text-white"
+      }
     },
     {
       icon: <Mail className="w-6 h-6" />,
       title: "Email",
       details: ["info@hisync.in"],
-      subtitle: "Drop us a line. We reply faster than you can say ‘inbox zero’!"
+      subtitle: "Drop us a line. We reply faster than you can say ‘inbox zero’!",
+      colors: {
+        bg: "from-emerald-100/70 to-emerald-200/60",
+        hoverBg: "hover:from-emerald-200/80 hover:to-emerald-300/70",
+        iconBg: "from-emerald-600 to-green-600",
+        iconText: "text-white"
+      }
     },
     {
       icon: <MapPin className="w-6 h-6" />,
       title: "Address",
       details: ["A708 ATS Bouquet, Sector 132, Noida", "Uttar Pradesh - 201304, India"],
-      subtitle: "Our door is open (literally). Come by for coffee and solutions!"
+      subtitle: "Our door is open (literally). Come by for coffee and solutions!",
+      colors: {
+        bg: "from-purple-100/70 to-purple-200/60",
+        hoverBg: "hover:from-purple-200/80 hover:to-purple-300/70",
+        iconBg: "from-purple-600 to-violet-600",
+        iconText: "text-white"
+      }
     },
     {
       icon: <Clock className="w-6 h-6" />,
       title: "Office Hours",
       details: ["Monday - Friday: 9:30 AM - 6:30 PM IST (Indian Standard Time)"],
-      subtitle: "We align with global time zones – just ask!"
+      subtitle: "We align with global time zones – just ask!",
+      colors: {
+        bg: "from-slate-200/70 to-slate-300/60",
+        hoverBg: "hover:from-slate-300/80 hover:to-slate-400/70",
+        iconBg: "from-slate-600 to-gray-600",
+        iconText: "text-white"
+      }
     },
   ];
 
@@ -343,9 +368,18 @@ export default function ContactPage() {
                   key={info.title}
                   className={`animate-fade-in-delay-${(index + 1) * 100}`}
                 >
-                  <Card className="p-5 shadow-lg border-0 bg-white/60 backdrop-blur-xl hover:bg-white/80 transition-all duration-300 group">
+                  <Card className={cn(
+                    "p-5 shadow-lg border-0 backdrop-blur-xl transition-all duration-300 group",
+                    "bg-gradient-to-br",
+                    info.colors.bg,
+                    info.colors.hoverBg
+                  )}>
                     <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-xl flex items-center justify-center text-blue-600 group-hover:scale-110 transition-transform duration-300">
+                      <div className={cn(
+                        "w-12 h-12 bg-gradient-to-br rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300",
+                        info.colors.iconBg,
+                        info.colors.iconText
+                      )}>
                         {info.icon}
                       </div>
                       <div className="flex-1">

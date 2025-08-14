@@ -1,47 +1,68 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
+import { Mail, CheckCircle } from "lucide-react";
+
 export default function FooterSection() {
+  const [isSubscribed, setIsSubscribed] = useState(false);
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubscribed(true);
+  };
+
   return (
-    <footer className="bg-slate-50 border-t border-slate-200/50">
+    <footer className="bg-gradient-to-br from-slate-900 to-gray-800 border-t border-slate-700">
       <div className="max-w-7xl mx-auto px-4 py-16">
-        {/* Main Footer Content */}
-        <div className="grid lg:grid-cols-6 gap-12 mb-16">
-          {/* Company Info */}
-          <div className="lg:col-span-2">
-            <div className="flex items-center space-x-3 mb-6 animate-fade-in">
-             <Image
-                               src="/images/logo/hisync_logo_black_one.webp"
-                               alt="HISYNC Logo"
-                               width={130}
-                               height={100}
-                               priority
-                             />
+        {/* Single Grid Section: Logo, Desc, Newsletter, Links */}
+        <div className="grid lg:grid-cols-6 gap-8 mb-12">
+          {/* Left Column: Logo, Description, Newsletter */}
+          <div className="lg:col-span-2 flex flex-col pr-5">
+            <div className="flex items-center space-x-3 mb-12">
+              <Image
+                src="/images/logo/HISYNC.png"
+                alt="HISYNC Logo"
+                width={170}
+                height={40}
+                priority
+              />
             </div>
-            
-            <p className="text-slate-600 leading-relaxed mb-8 max-w-sm animate-fade-in-delay-100">
+            <p className="text-slate-300 leading-relaxed mb-6">
               Integrated transformation partner for enterprise success. Strategic consulting meets custom technology solutions.
             </p>
-            
-            {/* Newsletter */}
-            <div className="space-y-4 animate-fade-in-delay-200">
-              <h4 className="text-sm font-semibold text-slate-900 uppercase tracking-wider">
+            <div className="space-y-4">
+              <h4 className="text-sm font-semibold text-slate-400 uppercase tracking-wider">
                 Stay Updated
               </h4>
-              <div className="flex max-w-sm">
-                <input 
-                  type="email" 
-                  placeholder="Enter your email"
-                  className="flex-1 px-4 py-3 bg-white border border-slate-200 rounded-l-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
-                />
-                <button className="px-6 py-3 bg-slate-900 text-white rounded-r-xl hover:bg-slate-800 transition-colors text-sm font-medium">
-                  Subscribe
-                </button>
-              </div>
+              {isSubscribed ? (
+                <div className="flex items-center space-x-3 bg-slate-800/50 border border-green-500/30 rounded-xl p-4 text-white">
+                  <CheckCircle className="w-6 h-6 text-green-500" />
+                  <span className="font-medium">Thank you for subscribing!</span>
+                </div>
+              ) : (
+                <form onSubmit={handleSubscribe} className="flex max-w-sm">
+                  <div className="relative flex-1">
+                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                    <input
+                      type="email"
+                      placeholder="Enter your email"
+                      required
+                      className="w-full pl-12 pr-4 py-3 bg-slate-800 border-t border-b border-l border-slate-600 rounded-l-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="px-6 py-3 bg-blue-600 text-white rounded-r-xl hover:bg-blue-700 transition-all duration-300 text-sm font-medium hover:shadow-lg hover:shadow-blue-500/20 active:scale-95"
+                  >
+                    Subscribe
+                  </button>
+                </form>
+              )}
             </div>
           </div>
-          
-          {/* Links Grid */}
+
+          {/* Right Columns: Navigation Links */}
           <div className="lg:col-span-4 grid md:grid-cols-4 gap-8">
             {[
               {
@@ -55,7 +76,7 @@ export default function FooterSection() {
                 ]
               },
               {
-                title: "Company", 
+                title: "Company",
                 links: [
                   { name: "About Us", href: "#" },
                   { name: "Our Team", href: "#" },
@@ -85,19 +106,19 @@ export default function FooterSection() {
                 ]
               }
             ].map((column, index) => (
-              <div 
+              <div
                 key={index}
                 className={`space-y-4 animate-fade-in-delay-${(index + 1) * 100}`}
               >
-                <h4 className="text-sm font-semibold text-slate-900 uppercase tracking-wider">
+                <h4 className="text-sm font-semibold text-white uppercase tracking-wider">
                   {column.title}
                 </h4>
                 <ul className="space-y-3">
                   {column.links.map((link, linkIndex) => (
                     <li key={linkIndex}>
-                      <a 
-                        href={link.href} 
-                        className="text-slate-600 hover:text-slate-900 transition-colors text-sm"
+                      <a
+                        href={link.href}
+                        className="text-slate-300 hover:text-white transition-colors text-sm"
                       >
                         {link.name}
                       </a>
@@ -110,15 +131,13 @@ export default function FooterSection() {
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t border-slate-200 pt-8">
+        <div className="border-t border-slate-700 pt-8">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center space-y-6 lg:space-y-0">
-            
             {/* Left Side - Copyright & Social */}
             <div className="flex flex-col sm:flex-row sm:items-center space-y-4 sm:space-y-0 sm:space-x-8">
-              <p className="text-slate-500 text-sm">
+              <p className="text-slate-400 text-sm">
                 © 2025 HiSync, Inc. All rights reserved.
               </p>
-              
               {/* Social Links */}
               <div className="flex space-x-6">
                 {[
@@ -129,7 +148,7 @@ export default function FooterSection() {
                   <a
                     key={index}
                     href={social.href}
-                    className="text-slate-400 hover:text-slate-600 transition-colors"
+                    className="text-slate-400 hover:text-white transition-all duration-300 hover:scale-110 hover:-translate-y-px"
                     aria-label={social.name}
                   >
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -147,7 +166,6 @@ export default function FooterSection() {
                 ))}
               </div>
             </div>
-            
             {/* Right Side - Legal Links */}
             <div className="flex flex-wrap gap-8">
               {[
@@ -159,7 +177,7 @@ export default function FooterSection() {
                 <a
                   key={index}
                   href={link.href}
-                  className="text-slate-500 hover:text-slate-700 transition-colors text-sm"
+                  className="text-slate-400 hover:text-white transition-colors text-sm"
                 >
                   {link.name}
                 </a>
