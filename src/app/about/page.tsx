@@ -13,14 +13,18 @@ import {
   Target,
   TrendingUp,
   Zap,
+  Rocket,
+  Shield,
 } from "lucide-react";
 
 import Navbar from "@/components/Navbar";
 import FooterSection from "@/components/sections/FooterSection";
+import { Badge } from "@/components/ui/badge";
 
 // import { Award, ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 export default function AboutPage() {
+  const prefersReduced = useReducedMotion();
   const founders = [
     {
       name: "Rohit Gaur",
@@ -112,7 +116,7 @@ export default function AboutPage() {
     {
       number: "20+",
       label: "Countries Served",
-      description: "Global experience across diverse markets and cultures",
+      description: "Experience across diverse global markets",
     },
     {
       number: "4",
@@ -122,7 +126,7 @@ export default function AboutPage() {
     {
       number: "100%",
       label: "Client Success Rate",
-      description: "Every project delivers measurable business value",
+      description: "Delivering measurable value in every project",
     },
   ];
 
@@ -131,17 +135,17 @@ export default function AboutPage() {
       <Navbar />
       {/* Hero Section */}
 
-      <section className="relative bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/40 py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        {/* Background elements start Orbs */}
+  <section className="relative min-h-screen flex items-center py-20 px-4 overflow-hidden bg-gradient-to-b from-slate-950 to-slate-500">
+        {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
-          {/* Gradient Orbs */}
+          {/* Animated Gradient Orbs */}
           <motion.div
-            animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
+            animate={{ scale: [1, 1.1, 1], opacity: [0.1, 0.2, 0.1] }}
             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
             className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-blue-400/20 to-blue-600/10 rounded-full blur-3xl"
           />
           <motion.div
-            animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.4, 0.2] }}
+            animate={{ scale: [1, 1.2, 1], opacity: [0.05, 0.15, 0.05] }}
             transition={{
               duration: 10,
               repeat: Infinity,
@@ -151,7 +155,7 @@ export default function AboutPage() {
             className="absolute top-1/3 right-1/4 w-80 h-80 bg-gradient-to-br from-indigo-400/20 to-purple-600/10 rounded-full blur-3xl"
           />
           <motion.div
-            animate={{ scale: [1, 1.15, 1], opacity: [0.25, 0.45, 0.25] }}
+            animate={{ scale: [1, 1.15, 1], opacity: [0.1, 0.2, 0.1] }}
             transition={{
               duration: 12,
               repeat: Infinity,
@@ -161,21 +165,21 @@ export default function AboutPage() {
             className="absolute bottom-1/4 left-1/3 w-72 h-72 bg-gradient-to-br from-cyan-400/15 to-blue-500/10 rounded-full blur-3xl"
           />
 
-          {/* Floating Shapes */}
+          {/* Floating Geometric Shapes */}
           <motion.div
             animate={{ y: [0, -20, 0], rotate: [12, 18, 12] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-yellow-500/10 to-transparent rounded-2xl"
+            className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-white/5 to-transparent rounded-2xl"
           />
           <motion.div
-            animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
+            animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.5, 0.3] }}
             transition={{
               duration: 4,
               repeat: Infinity,
               ease: "easeInOut",
               delay: 1,
             }}
-            className="absolute top-40 right-20 w-24 h-24 bg-yellow-500/10 to-transparent rounded-full"
+            className="absolute top-40 right-20 w-24 h-24 bg-gradient-to-br from-white/5 to-transparent rounded-full"
           />
           <motion.div
             animate={{ y: [0, -15, 0], rotate: [45, 52, 45] }}
@@ -185,71 +189,66 @@ export default function AboutPage() {
               ease: "easeInOut",
               delay: 3,
             }}
-            className="absolute bottom-32 right-1/3 w-40 h-40 bg-yellow-500/10 to-transparent rounded-3xl"
+            className="absolute bottom-32 right-1/3 w-40 h-40 bg-gradient-to-br from-white/5 to-transparent rounded-3xl"
           />
 
-          {/* Floating Particles */}
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            {[...Array(6)].map((_, i) => (
-              <motion.div
-                key={i}
-                animate={{
-                  y: [0, -30, 0],
-                  x: [0, 15, 0],
-                  opacity: [0.3, 0.8, 0.3],
-                  scale: [1, 1.5, 1],
-                }}
-                transition={{
-                  duration: 4 + i * 0.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: i * 0.8,
-                }}
-                className={`absolute w-2 h-2 rounded-full ${
-                  i % 3 === 0
-                    ? "bg-yellow-400"
-                    : i % 3 === 1
-                    ? "bg-yellow-400"
-                    : "bg-yellow-400"
-                }`}
-                style={{
-                  left: `${20 + i * 10}%`,
-                  top: `${30 + (i % 2) * 40}%`,
-                }}
-              />
-            ))}
-          </div>
-
           {/* Grid Pattern */}
-          <div className="absolute inset-0 opacity-[0.02]">
+          <div className="absolute inset-0 opacity-[0.4]">
             <div
               className="absolute inset-0"
               style={{
                 backgroundImage:
-                  "linear-gradient(rgba(246, 243, 59, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(246, 218, 59, 0.1) 1px, transparent 1px)",
+                  "linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px)",
                 backgroundSize: "50px 50px",
               }}
             />
           </div>
+            {/* Extra subtle animated accents for About hero */}
+            <motion.div
+              aria-hidden
+              animate={prefersReduced ? { opacity: 0.06 } : { y: [0, -10, 0], x: [0, 8, 0], opacity: [0.06, 0.14, 0.06] }}
+              transition={prefersReduced ? { duration: 0 } : { duration: 11, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+              className="absolute left-12 top-14 w-4 h-4 bg-white/40 rounded-full blur-sm pointer-events-none"
+            />
+            <motion.div
+              aria-hidden
+              animate={prefersReduced ? { opacity: 0.07 } : { y: [0, -18, 0], rotate: [0, 24, 0], opacity: [0.07, 0.18, 0.07] }}
+              transition={prefersReduced ? { duration: 0 } : { duration: 13, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              className="absolute right-20 top-36 w-6 h-6 bg-purple-300/28 rounded-sm rotate-45 pointer-events-none blur"
+            />
+            <motion.div
+              aria-hidden
+              animate={prefersReduced ? { opacity: 0.06 } : { x: [0, -16, 0], opacity: [0.06, 0.12, 0.06] }}
+              transition={prefersReduced ? { duration: 0 } : { duration: 17, repeat: Infinity, ease: "easeInOut", delay: 1.8 }}
+              className="absolute bottom-16 left-1/3 w-7 h-7 bg-emerald-200/28 rounded-full blur-xl pointer-events-none"
+            />
         </div>
         {/* Background Elements End */}
 
         {/* Foreground Content */}
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center">
-            <div className="cursor-pointer inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 rounded-full text-sm font-medium mb-8 shadow-lg mt-28">
-              <Award className="w-4 h-4 mr-2" />A Story of Perfect
-              Complementarity
+            <div>
+              <div className="relative inline-block">
+                <Badge
+                  variant="outline"
+                  className="mb-6 px-4 py-2 bg-slate-800/60 backdrop-blur-sm text-slate-300 border-slate-700 font-medium shadow-lg hover:shadow-xl transition-all duration-300 inline-flex items-center rounded-lg"
+                >
+                  <Award className="w-4 h-4 mr-2 text-blue-400" />A Story of Perfect
+                  Complementarity
+                </Badge>
+                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600/20 to-indigo-600/20 rounded-full blur opacity-0 hover:opacity-100 transition-opacity duration-500 -z-10" />
+              </div>
             </div>
 
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 mb-8 leading-tight">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-50 mb-8 leading-tight">
               When IT Meets
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-teal-600">
+              <span className="block bg-gradient-to-r from-blue-500 via-blue-600 to-indigo-500 bg-clip-text text-transparent">
                 Business Wisdom
               </span>
             </h1>
 
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-12 leading-relaxed">
+            <p className="text-xl text-slate-300 max-w-4xl mx-auto mb-12 leading-relaxed">
               Our story began with a simple realization: the best software
               solutions come from the perfect marriage of technical excellence
               and deep business understanding. Here's how four professionals
@@ -258,11 +257,13 @@ export default function AboutPage() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="cursor-pointer  inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+              <button className="cursor-pointer  inline-flex items-center px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-slate-100 rounded-lg font-semibold hover:bg-white/20 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
                 Discover Our Journey
                 <ArrowRight className="w-5 h-5 ml-2" />
               </button>
             </div>
+
+            
           </div>
         </div>
       </section>
@@ -730,17 +731,17 @@ export default function AboutPage() {
               project.
             </p>
           </div>
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
             {achievements.map((achievement, index) => (
               <div key={index} className="text-center group">
-                <div className="bg-white bg-opacity-10 rounded-xl p-8 hover:bg-opacity-20 transition-all duration-300 transform group-hover:-translate-y-2">
-                  <div className="text-5xl font-bold text-blue mb-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="bg-white bg-opacity-10 rounded-xl p-6 hover:bg-opacity-20 transition-all duration-300 transform group-hover:-translate-y-2 md:min-h-[220px] flex flex-col items-center text-center">
+                  <div className="text-5xl font-bold text-blue mb-2 flex-none group-hover:scale-110 transition-transform duration-300">
                     {achievement.number}
                   </div>
-                  <h3 className="text-xl font-bold text-blue mb-3">
+                  <h3 className="text-lg font-bold text-blue mb-2 flex-none">
                     {achievement.label}
                   </h3>
-                  <p className="text-blue text-sm leading-relaxed">
+                  <p className="text-blue text-sm leading-relaxed mt-1">
                     {achievement.description}
                   </p>
                 </div>

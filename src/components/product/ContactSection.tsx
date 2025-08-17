@@ -183,25 +183,28 @@ export default function ContactSection() {
                      formData.agreeToTerms;
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-gray-50">
+    <section className="relative min-h-screen flex items-center py-20 px-4 overflow-hidden bg-gradient-to-b from-slate-950 to-slate-500">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-16 relative z-10"
         >
           <div className="flex items-center justify-center mb-4">
-            <MessageCircle className="h-8 w-8 text-blue-600 mr-3" />
-            <Badge variant="outline" className="text-sm px-3 py-1">
+            <MessageCircle className="h-8 w-8 text-blue-400 mr-3" />
+            <Badge
+              variant="outline"
+              className="mb-6 px-3 py-1 bg-slate-800/60 backdrop-blur-sm text-slate-300 border-slate-700 font-medium text-sm"
+            >
               Get In Touch
             </Badge>
           </div>
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl font-bold text-slate-50 mb-4">
             Contact Our Experts
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-slate-300 max-w-3xl mx-auto">
             Ready to transform your data synchronization? Our team of experts is here to help you get started.
           </p>
         </motion.div>

@@ -101,10 +101,10 @@ export default function ContactPage() {
       details: ["+91 9891700140 | 8826532801 | 8447304372"],
       subtitle: "Your voice matters. We’re always here to listen—and solve.",
       colors: {
-        bg: "from-blue-100/70 to-blue-200/60",
-        hoverBg: "hover:from-blue-200/80 hover:to-blue-300/70",
-        iconBg: "from-blue-600 to-indigo-600",
-        iconText: "text-white"
+  bg: "from-blue-50/80 to-indigo-50/70",
+  hoverBg: "hover:from-blue-100/90 hover:to-indigo-100/80",
+  iconBg: "from-blue-600 to-indigo-600",
+  iconText: "text-white"
       }
     },
     {
@@ -113,10 +113,10 @@ export default function ContactPage() {
       details: ["info@hisync.in"],
       subtitle: "Drop us a line. We reply faster than you can say ‘inbox zero’!",
       colors: {
-        bg: "from-emerald-100/70 to-emerald-200/60",
-        hoverBg: "hover:from-emerald-200/80 hover:to-emerald-300/70",
-        iconBg: "from-emerald-600 to-green-600",
-        iconText: "text-white"
+  bg: "from-emerald-50/80 to-emerald-100/70",
+  hoverBg: "hover:from-emerald-100/90 hover:to-emerald-200/80",
+  iconBg: "from-emerald-600 to-green-600",
+  iconText: "text-white"
       }
     },
     {
@@ -125,10 +125,10 @@ export default function ContactPage() {
       details: ["A708 ATS Bouquet, Sector 132, Noida", "Uttar Pradesh - 201304, India"],
       subtitle: "Our door is open (literally). Come by for coffee and solutions!",
       colors: {
-        bg: "from-purple-100/70 to-purple-200/60",
-        hoverBg: "hover:from-purple-200/80 hover:to-purple-300/70",
-        iconBg: "from-purple-600 to-violet-600",
-        iconText: "text-white"
+  bg: "from-violet-50/80 to-purple-100/70",
+  hoverBg: "hover:from-violet-100/90 hover:to-purple-200/80",
+  iconBg: "from-purple-600 to-violet-600",
+  iconText: "text-white"
       }
     },
     {
@@ -137,10 +137,10 @@ export default function ContactPage() {
       details: ["Monday - Friday: 9:30 AM - 6:30 PM IST (Indian Standard Time)"],
       subtitle: "We align with global time zones – just ask!",
       colors: {
-        bg: "from-slate-200/70 to-slate-300/60",
-        hoverBg: "hover:from-slate-300/80 hover:to-slate-400/70",
-        iconBg: "from-slate-600 to-gray-600",
-        iconText: "text-white"
+  bg: "from-slate-50/80 to-slate-100/70",
+  hoverBg: "hover:from-slate-100/90 hover:to-slate-200/80",
+  iconBg: "from-slate-600 to-gray-600",
+  iconText: "text-white"
       }
     },
   ];
@@ -192,35 +192,92 @@ export default function ContactPage() {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/20 relative overflow-hidden">
+  <div className="min-h-screen relative overflow-hidden bg-gradient-to-b from-slate-950 to-slate-500">
         {/* Premium Background Elements */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.08),transparent_50%)]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(99,102,241,0.05),transparent_50%)]"></div>
+  <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.04),transparent_50%)] opacity-60"></div>
+  <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(99,102,241,0.03),transparent_50%)] opacity-50"></div>
         
-        {/* Corporate Pattern Overlay */}
-        <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(59,130,246,0.02)_25%,rgba(59,130,246,0.02)_50%,transparent_50%,transparent_75%,rgba(59,130,246,0.02)_75%)] bg-[length:60px_60px]"></div>
+  {/* Grid pattern (copied from HeroSection) - subtle, non-interactive */}
+  <div className="absolute inset-0 opacity-40 pointer-events-none">
+    <div
+      className="absolute inset-0"
+      style={{
+        backgroundImage:
+          "linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px)",
+        backgroundSize: '50px 50px',
+      }}
+    />
+  </div>
         
-        {/* Subtle Grid Pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(15,23,42,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.04)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
-        
-        {/* Professional Accent Elements */}
-        <div className="absolute top-20 left-20 w-3 h-3 bg-blue-500/20 rounded-full animate-pulse"></div>
-        <div className="absolute top-40 right-32 w-2 h-2 bg-indigo-500/15 rounded-full animate-pulse animation-delay-200"></div>
-        <div className="absolute bottom-32 left-40 w-2.5 h-2.5 bg-blue-400/20 rounded-full animate-pulse animation-delay-400"></div>
-        
-        {/* Corporate Lines */}
-        <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-blue-200/30 to-transparent"></div>
-        <div className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-indigo-200/20 to-transparent"></div>
+  {/* Professional Accent Elements (slow float + small shapes) */}
+  <style>{`
+    @keyframes floatA { 0%{transform:translateY(0)}50%{transform:translateY(-10px)}100%{transform:translateY(0)} }
+    @keyframes floatB { 0%{transform:translateY(0)}50%{transform:translateY(8px)}100%{transform:translateY(0)} }
+    @keyframes floatC { 0%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(-6px,-8px) rotate(15deg)}100%{transform:translate(0,0) rotate(0deg)} }
+    @keyframes floatD { 0%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(6px,8px) rotate(-12deg)}100%{transform:translate(0,0) rotate(0deg)} }
+  `}</style>
+
+  <div
+    className="absolute top-20 left-20 w-3 h-3 bg-blue-500/20 rounded-full pointer-events-none"
+    style={{ animation: 'floatA 8s ease-in-out infinite', animationDelay: '0s' }}
+  />
+
+  <div
+    className="absolute top-40 right-32 w-2 h-2 bg-indigo-500/15 rounded-full pointer-events-none"
+    style={{ animation: 'floatB 9s ease-in-out infinite', animationDelay: '1.2s' }}
+  />
+
+  <div
+    className="absolute bottom-32 left-40 w-2.5 h-2.5 bg-blue-400/20 rounded-full pointer-events-none"
+    style={{ animation: 'floatA 10s ease-in-out infinite', animationDelay: '2s' }}
+  />
+
+  <div
+    className="absolute top-28 left-40 w-2 h-2 bg-blue-400/18 rounded-full pointer-events-none"
+    style={{ animation: 'floatB 7.5s ease-in-out infinite', animationDelay: '0.6s' }}
+  />
+
+  <div
+    className="absolute top-12 right-20 w-1.5 h-1.5 bg-indigo-400/15 rounded-full pointer-events-none"
+    style={{ animation: 'floatA 11s ease-in-out infinite', animationDelay: '3s' }}
+  />
+
+  <div
+    className="absolute bottom-40 right-16 w-2 h-2 bg-cyan-400/16 rounded-full pointer-events-none"
+    style={{ animation: 'floatB 8.5s ease-in-out infinite', animationDelay: '1s' }}
+  />
+
+  {/* small rotated square */}
+  <div
+    className="absolute left-12 bottom-24 w-3 h-3 bg-purple-400/14 pointer-events-none transform rotate-45"
+    style={{ animation: 'floatC 9.5s ease-in-out infinite', animationDelay: '0.9s' }}
+  />
+
+  {/* small diamond shape */}
+  <div
+    className="absolute left-2/3 top-6 w-2.5 h-2.5 bg-violet-400/12 pointer-events-none transform rotate-45"
+    style={{ animation: 'floatD 12s ease-in-out infinite', animationDelay: '2.2s' }}
+  />
+
+
+
+  {/* Bottom smudge/fade to blend into next (map) section - softened and non-blurring */}
+  <div
+    className="absolute inset-x-0 bottom-0 h-56 pointer-events-none z-0"
+    style={{
+      background: 'linear-gradient(180deg, rgba(15,23,42,0) 0%, rgba(15,23,42,0.04) 45%, rgba(241,245,249,0.5) 80%, rgba(241,245,249,0.9) 100%)',
+    }}
+  />
         
       {/* Hero Section */}
       <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-4xl mx-auto mb-1 animate-fade-in-up">
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100/80 border border-blue-200/50 text-blue-700 text-sm font-semibold mb-6 shadow-sm">
-              <Building2 className="w-4 h-4 mr-2" />
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-slate-800/60 border border-slate-700 text-slate-300 text-sm font-semibold mb-6 shadow-sm backdrop-blur-sm">
+              <Building2 className="w-4 h-4 mr-2 text-blue-400" />
               Enterprise Contact
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-tight">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-50 mb-6 leading-tight">
               Let's Build Something
               <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent"> Amazing</span>
             </h1>
@@ -369,7 +426,7 @@ export default function ContactPage() {
                   className={`animate-fade-in-delay-${(index + 1) * 100}`}
                 >
                   <Card className={cn(
-                    "p-5 shadow-lg border-0 backdrop-blur-xl transition-all duration-300 group",
+                    "p-5 shadow-lg border-0 backdrop-blur-xl transition-all duration-300 group hover:shadow-2xl hover:-translate-y-1 hover:scale-[1.01]",
                     "bg-gradient-to-br",
                     info.colors.bg,
                     info.colors.hoverBg
@@ -429,7 +486,14 @@ export default function ContactPage() {
               Located in Noida, Sector 132, our office is easily accessible and equipped with modern facilities for client meetings.
             </p>
           </div>
-            <div className="h-96 rounded-2xl overflow-hidden shadow-lg border border-slate-200/50 animate-fade-in-delay-200">
+            <div className="h-96 rounded-2xl overflow-hidden shadow-2xl border border-slate-200/50 animate-fade-in-delay-200 relative">
+              {/* subtle inner shadow for depth (non-interactive) */}
+              <div
+                className="absolute inset-0 pointer-events-none rounded-2xl"
+                style={{
+                  boxShadow: 'inset 0 20px 40px rgba(2,6,23,0.08), inset 0 -20px 30px rgba(2,6,23,0.04)'
+                }}
+              />
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3505.039911959824!2d77.3943493753556!3d28.53850897571698!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5a800000001%3A0x1914a7a5057558f6!2sATS%20Bouquet!5e0!3m2!1sen!2sin!4v1716191234567!5m2!1sen!2sin"
               width="100%"
