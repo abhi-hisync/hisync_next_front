@@ -1,20 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
-import {
-  Zap,
-  ArrowRight,
-  Play,
-  Eye,
-  Users,
-  TrendingUp,
-  Shield,
-  Rocket,
-} from "lucide-react";
-import PremiumButton from "@/components/PremiumButton";
-import { motion } from "framer-motion";
-import { X } from "lucide-react";
+import { Zap, Users, TrendingUp, Shield, Rocket } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 
 interface HeroSectionProps {
   showTooltip: string | null;
@@ -25,7 +13,7 @@ export default function HeroSection({
   showTooltip,
   setShowTooltip,
 }: HeroSectionProps) {
-  const [showVideo, setShowVideo] = useState(false);
+  const prefersReduced = useReducedMotion();
   return (
     <section
       id="home"
@@ -87,6 +75,50 @@ export default function HeroSection({
           className="absolute bottom-32 right-1/3 w-40 h-40 bg-gradient-to-br from-white/5 to-transparent rounded-3xl"
         />
 
+        {/* Extra subtle accents: small floating dots and rotated diamonds for depth */}
+        <motion.div
+          aria-hidden
+          animate={
+            prefersReduced
+              ? { opacity: 0.08 }
+              : { y: [0, -10, 0], x: [0, 8, 0], opacity: [0.08, 0.18, 0.08] }
+          }
+          transition={prefersReduced ? { duration: 0 } : { duration: 8, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+          className="absolute left-10 top-10 w-4 h-4 bg-white/40 rounded-full blur-sm pointer-events-none"
+        />
+        <motion.div
+          aria-hidden
+          animate={
+            prefersReduced
+              ? { opacity: 0.09 }
+              : { y: [0, -14, 0], rotate: [0, 22, 0], opacity: [0.09, 0.2, 0.09] }
+          }
+          transition={prefersReduced ? { duration: 0 } : { duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
+          className="absolute right-24 top-28 w-6 h-6 bg-indigo-400/30 rounded-sm rotate-45 pointer-events-none blur"
+        />
+        <motion.div
+          aria-hidden
+          animate={
+            prefersReduced
+              ? { opacity: 0.08 }
+              : { x: [0, -18, 0], opacity: [0.08, 0.18, 0.08] }
+          }
+          transition={prefersReduced ? { duration: 0 } : { duration: 11, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          className="absolute bottom-10 left-1/4 w-8 h-8 bg-cyan-300/30 rounded-full blur-xl pointer-events-none"
+        />
+
+        {/* Slow parallax gradient layer for subtle motion when content is visible */}
+        <motion.div
+          aria-hidden
+          animate={
+            prefersReduced
+              ? { opacity: 0.02 }
+              : { x: [0, 10, 0], opacity: [0.03, 0.08, 0.03] }
+          }
+          transition={prefersReduced ? { duration: 0 } : { duration: 18, repeat: Infinity, ease: "linear" }}
+          className="absolute inset-0 bg-gradient-to-br from-transparent to-white/20 pointer-events-none"
+        />
+
         {/* Grid Pattern */}
         <div className="absolute inset-0 opacity-[0.4]">
           <div
@@ -127,103 +159,10 @@ export default function HeroSection({
           <p className="text-xl md:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed font-light">
             We are your agile end-to-end partner: Ex-Big 4 consultants streamline
             operations and elite engineers build custom ERP Solutions.
-            <span className="text-slate-100 font-medium">One Team</span> for any
+            <span className="text-slate-100 font-medium"> One Team</span> for any
             Business Size, designed to scale with you.
           </p>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-10">
-            <PremiumButton
-              size="lg"
-              className="px-8 py-4 text-lg shadow-xl hover:shadow-2xl group transition-all duration-300"
-              onClick={() => {
-                console.log("Get Started clicked");
-              }}
-            >
-              <span className="cursor-pointer flex items-center">
-                Get Started
-                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
-              </span>
-            </PremiumButton>
-
-            <div className="relative group">
-              <PremiumButton
-                variant="outline"
-                size="lg"
-                icon={<Play className="w-5 h-5" />}
-                iconPosition="left"
-                className="px-8 py-4 text-lg bg-white/10 backdrop-blur-sm border border-white/20 text-slate-100 hover:bg-white/20 shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300"
-                onClick={() => {
-                  setShowVideo(true);
-                  setShowTooltip("demo");
-                  setTimeout(() => setShowTooltip(null), 3000);
-                }}
-              >
-                Watch Demo
-              </PremiumButton>
-
-              {/* Tooltip */}
-              {showTooltip === "demo" && (
-                <div className="absolute -top-16 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white px-4 py-2 rounded-lg shadow-xl z-50 whitespace-nowrap text-sm font-medium">
-                  <div className="flex items-center gap-2">
-                    <Eye className="w-4 h-4" />
-                    <span>2-minute demo coming soon!</span>
-                  </div>
-                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-slate-800" />
-                </div>
-              )}
-            </div>
-          </div>
-
-          {showVideo && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
-              {/* Overlay for click outside to close */}
-              <div
-                className="absolute inset-0"
-                onClick={() => setShowVideo(false)}
-                aria-label="Close video"
-              />
-              <div className="relative bg-white/10 backdrop-blur-xl rounded-3xl shadow-2xl p-0 md:p-4 max-w-6xl w-[98vw] md:w-full animate-scale-in">
-                {/* Video */}
-                <div className="relative aspect-w-16 aspect-h-9 w-full min-h-[220px] h-[60vw] md:h-[38rem] rounded-2xl overflow-hidden shadow-xl">
-                  <button
-                    className="absolute top-3 right-3 bg-white/90 rounded-full shadow-lg p-2 flex items-center justify-center text-slate-700 hover:text-red-500 hover:bg-red-100 text-xl transition-all duration-200 z-10 border border-slate-200 cursor-pointer"
-                    onClick={() => setShowVideo(false)}
-                    aria-label="Close"
-                  >
-                    <X className="w-5 h-5" />
-                  </button>
-                  <iframe
-                    src="https://www.youtube.com/embed/1NSA8ycGfKg?enablejsapi=1&html5=1"
-                    title="Demo Video"
-                    allow="autoplay; encrypted-media"
-                    allowFullScreen
-                    className="w-full h-full rounded-2xl border-none"
-                    style={{ background: "transparent" }}
-                  />
-                </div>
-                {/* Optional: Title or description */}
-                <div className="mt-4 text-center text-lg font-semibold text-slate-800">
-                  Watch Our 2-Minute Demo
-                </div>
-              </div>
-              <style jsx global>{`
-                @keyframes scale-in {
-                  from {
-                    transform: scale(0.95);
-                    opacity: 0;
-                  }
-                  to {
-                    transform: scale(1);
-                    opacity: 1;
-                  }
-                }
-                .animate-scale-in {
-                  animation: scale-in 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                }
-              `}</style>
-            </div>
-          )}
 
           {/* Stats Section */}
           <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8">

@@ -142,20 +142,20 @@ export default function Navbar() {
                 {/* Product */}
                 <NavigationMenuItem>
                   <NavigationMenuLink asChild>
-                    <Link 
-                      href="/product"
+                    <a 
+                      href="https://i-assetx.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className={cn(
                         navigationMenuTriggerStyle(),
                         "bg-transparent font-medium rounded-lg h-9 px-4 text-sm transition-all duration-200",
-                        isActive("/product")
-                          ? "bg-blue-100 text-blue-700 font-semibold"
-                          : isScrolled 
-                            ? "text-gray-700 hover:text-blue-600 hover:bg-gray-100/60" 
-                            : "text-slate-200 hover:text-white hover:bg-white/10"
+                        isScrolled 
+                          ? "text-gray-700 hover:text-blue-600 hover:bg-gray-100/60" 
+                          : "text-slate-200 hover:text-white hover:bg-white/10"
                       )}
                     >
-                      Our Product
-                    </Link>
+                      AssetX
+                    </a>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
 
@@ -277,19 +277,18 @@ export default function Navbar() {
             {isActive("/services") && <div className="w-2 h-2 bg-blue-600 rounded-full" />}
           </Link>
 
-          <Link
-            href="/product"
+          <a
+            href="https://i-assetx.com/"
+            target="_blank"
+            rel="noopener noreferrer"
             className={cn(
               "flex items-center justify-between py-3 px-4 rounded-lg font-medium transition-all duration-200 group",
-              isActive("/product")
-                ? "bg-blue-100 text-blue-700"
-                : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+              "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
             )}
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            <span>Our Product</span>
-            {isActive("/product") && <div className="w-2 h-2 bg-blue-600 rounded-full" />}
-          </Link>
+            <span>AssetX</span>
+          </a>
 
           <Link
             href="/about"
